@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChemiCleanBackEnd.Models;
+using ChemiCleanBackEnd.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,36 +15,57 @@ namespace ChemiCleanBackEnd.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        // GET: api/<ProductsController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        ProductsRepo _repo;
+        public ProductsController()
         {
-            return new string[] { "value1", "value2" };
+            _repo = new ProductsRepo();
+        }
+        // GET: api/products
+        [HttpGet]
+        public IActionResult GetAllProducts()
+        {
+            var allProducts = _repo.GetAll();
+
+            return Ok(allProducts);
         }
 
-        // GET api/<ProductsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET api/products/2
+        [HttpGet("{userId}")]
+        public IActionResult GetById(int productId)
         {
-            return "value";
+            var singleProduct = _repo.GetById(productId);
+            if (singleProduct == null) return NotFound("No User with that ID was found");
+            return Ok(singleProduct);
         }
 
         // POST api/<ProductsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult CreateProduct(Product product)
         {
+            _repo.AddProduct(product);
+
+            return Created($"/api/products/{product.ProductId}", product);
         }
 
-        // PUT api/<ProductsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //[HttpPut("{id}")]
+        //public IActionResult UpdatedProducts(int id, Product products)
+        //{
+        //    var updatedProducts = _repo.UpdateProduct(id, products);
 
-        // DELETE api/<ProductsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //    return Ok(updatedProducts);
+        //}
+
+        // DELETE api/products/2
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteProduct(int id)
+        //{
+        //    if (_repo.GetById(id) == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    _repo.Remove(id);
+
+        //    return Ok();
+        //}
     }
 }
