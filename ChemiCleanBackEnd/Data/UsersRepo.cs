@@ -44,7 +44,8 @@ namespace ChemiCleanBackEnd.Data
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"INSERT INTO [dbo].[Users]
-                                ([username]
+                                ([uid]
+                               ,[username]
                                ,[FirstName]
                                ,[LastName]
                                ,[Email]
@@ -53,7 +54,7 @@ namespace ChemiCleanBackEnd.Data
                         Output inserted.id
 
                      VALUES
-                            (@username, @FirstName, @LastName, @Email, @Password, @userPhotoUrl)";
+                            (@uid, @username, @FirstName, @LastName, @Email, @Password, @userPhotoUrl)";
             var newId = db.ExecuteScalar<int>(sql, userToAdd);
 
             userToAdd.Id = newId;
@@ -71,7 +72,8 @@ namespace ChemiCleanBackEnd.Data
         public User Update(int id, User userToUpdate)
         {
             var sql = @"UPDATE [dbo].[Users]
-                         SET    [username] = @username
+                         SET    [uid] = @uid
+                               ,[username] = @username
                                ,[FirstName] = @firstName
                                ,[LastName] = @lastName
                                ,[Email] = @email
@@ -83,6 +85,7 @@ namespace ChemiCleanBackEnd.Data
 
             var parameters = new
             {
+                userToUpdate.uid,
                 userToUpdate.username,
                 userToUpdate.FirstName,
                 userToUpdate.LastName,
