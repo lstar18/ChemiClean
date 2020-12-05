@@ -27,7 +27,7 @@ namespace ChemiCleanBackEnd.Data
                                ,[reviewId])
                                Output inserted.ProductId
                             VALUES
-                                (@productId,@uid,@title,@description,@imageUrl,@rating,@reviewId)";
+                                (@uid,@title,@description,@imageUrl,@rating,@reviewId)";
 
             var newId = db.ExecuteScalar<int>(sql, productToAdd);
 

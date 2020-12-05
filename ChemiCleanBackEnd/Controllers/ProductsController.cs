@@ -30,11 +30,11 @@ namespace ChemiCleanBackEnd.Controllers
         }
 
         // GET api/products/2
-        [HttpGet("{userId}")]
-        public IActionResult GetById(int productId)
+        [HttpGet("{ProductId}")]
+        public IActionResult GetById(int ProductId)
         {
-            var singleProduct = _repo.GetById(productId);
-            if (singleProduct == null) return NotFound("No User with that ID was found");
+            var singleProduct = _repo.GetById(ProductId);
+            if (singleProduct == null) return NotFound("No Product with that ID was found");
             return Ok(singleProduct);
         }
 
@@ -47,13 +47,13 @@ namespace ChemiCleanBackEnd.Controllers
             return Created($"/api/products/{product.ProductId}", product);
         }
 
-        //[HttpPut("{id}")]
-        //public IActionResult UpdatedProducts(int id, Product products)
-        //{
-        //    var updatedProducts = _repo.UpdateProduct(id, products);
+        [HttpPut("{id}")]
+        public IActionResult UpdatedProduct(int id, Product products)
+        {
+            var updatedProducts = _repo.Update(id, products);
 
-        //    return Ok(updatedProducts);
-        //}
+            return Ok(updatedProducts);
+        }
 
         // DELETE api/products/2
         //[HttpDelete("{id}")]
