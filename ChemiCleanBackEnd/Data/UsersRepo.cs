@@ -57,7 +57,7 @@ namespace ChemiCleanBackEnd.Data
                             (@uid, @username, @FirstName, @LastName, @Email, @Password, @userPhotoUrl)";
             var newId = db.ExecuteScalar<int>(sql, userToAdd);
 
-            userToAdd.Id = newId;
+            userToAdd.id = newId;
         }
 
         public void Remove(int userId)
@@ -85,14 +85,14 @@ namespace ChemiCleanBackEnd.Data
 
             var parameters = new
             {
-                userToUpdate.uid,
-                userToUpdate.username,
-                userToUpdate.FirstName,
-                userToUpdate.LastName,
-                userToUpdate.Email,
-                userToUpdate.Password,
-                userToUpdate.userPhotoUrl,
-                id
+                uid = userToUpdate.uid,
+                username = userToUpdate.username,
+                firstName = userToUpdate.FirstName,
+                lastName = userToUpdate.LastName,
+                email = userToUpdate.Email,
+                password = userToUpdate.Password,
+                userPhotoUrl = userToUpdate.userPhotoUrl,
+                id = id
             };
 
             var updatedUser = db.QueryFirstOrDefault<User>(sql, parameters);

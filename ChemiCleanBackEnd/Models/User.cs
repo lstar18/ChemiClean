@@ -7,7 +7,7 @@ namespace ChemiCleanBackEnd.Models
 {
     public class User
     {        
-        public int Id { get; set; }
+        public int id { get; set; }
         public string uid { get; set; }
         public string username { get; set; }
         public string FirstName { get; set; }
