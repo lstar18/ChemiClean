@@ -1,0 +1,41 @@
+.ProductCard 
+{
+  .card-body{
+  color: rgba(0, 0, 0, 0.644);
+  max-width: 95%;
+  max-height: 100%;
+  background-color: rgba(128, 128, 128, 0.404);
+  border: rgba(5, 1, 1, 0.644) 2px solid;
+  border-radius: 1px;
+}
+  
+    .card-img {
+      max-width: 250px;
+      max-height: 2500px;  
+      border:  rgba(104, 101, 101, 0.514) 2px solid;
+    }
+    
+    .view-single-product-button{
+      margin-top: 20px;
+      margin-left: 10%;
+      background-color: whitesmoke;
+    } 
+    //  .card-text-desc {
+    //    font-size: 30px;
+    //    font-family: $bellota
+    //  }
+    //  .card-text-date {
+    //   font-size: 25px;
+    //   font-family: $bellota
+    // }
+    // .card-title {
+    //   font-size: 35px;
+    //   font-family: $bellota
+    // }
+
+    // .card:hover{
+    //   background-color: $hoverCardColor;
+    // }
+  
+  
+}
