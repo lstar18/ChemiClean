@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const ProductShape = PropTypes.shape({
-  ProductId: PropTypes.number.isRequired,
+  productId: PropTypes.number.isRequired,
   uid: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

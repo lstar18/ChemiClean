@@ -24,7 +24,7 @@ class AllProducts extends React.Component {
       <ProductCard key={index} product={product} />
     ));
     return (
-      <div className="Products text-center">
+      <div className="AllProducts text-center">
         <h2> Products </h2>
         <div className="ProductContainer d-flex flex-wrap justify-content-around">
           {buildProductPage}

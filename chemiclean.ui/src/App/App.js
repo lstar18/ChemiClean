@@ -46,7 +46,7 @@ class App extends React.Component {
           <React.Fragment>
             <MyNavbar authed={authed}/>
               <Switch>
-                <Route path='/Product/:ProductId' component={SingleProduct} />
+                <Route path='/Product/:productId' component={SingleProduct} />
                 <Route path='/AllProducts' component={AllProducts}/>
                 <Route path='/home' component={Home}/>
                 <Redirect from="*" to="/home"/>

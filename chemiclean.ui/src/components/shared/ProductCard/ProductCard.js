@@ -12,14 +12,14 @@ class ProductCard extends React.Component {
 
   render() {
     const { product } = this.props;
-    const { productLink } = `products/${product.ProductId}`;
+    const productLink = `Product/${product.productId}`;
 
     return (
       <div className="ProductCard d-flex flex-wrap justify-content-center co-12">
         <div className="card-body text-center">
-          <h4 className="card-title">{product.title}</h4>
-          <img className="card-img" alt="Picture of the product" src={product.imageUrl} />
-          <h3 className="card-detail"> EWG Rating: {product.rating} </h3>
+          <h3 className="card-title">{product.title}</h3>
+          <img className="card-img mb-3" alt={product.title} src={product.imageUrl} />
+          <h5 className="card-detail"> EWG Rating: {product.rating} </h5>
           <Link className="view-single-product-button btn btn-outline-dark" to={productLink}> Product Details  <i className="fas fa-eye"></i> </Link>
         </div>
      </div>
