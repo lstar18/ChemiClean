@@ -1,23 +1,22 @@
 .ProductCard 
 {
   .card-body{
-  color: rgba(0, 0, 0, 0.644);
-  max-width: 95%;
+  color: rgb(8, 88, 8);
+  max-width: 100%;
   max-height: 100%;
-  background-color: rgba(128, 128, 128, 0.404);
-  border: rgba(5, 1, 1, 0.644) 2px solid;
+  background-color: rgba(255, 253, 253, 0.822);
+  border:rgb(8, 88, 8) 3px solid;
   border-radius: 1px;
 }
   
     .card-img {
-      max-width: 250px;
-      max-height: 2500px;  
-      border:  rgba(104, 101, 101, 0.514) 2px solid;
+      max-width: 200px;
+      max-height: 250px;  
+      // border:  rgba(104, 101, 101, 0.514) 2px solid;
     }
     
     .view-single-product-button{
       margin-top: 20px;
-      margin-left: 10%;
       background-color: whitesmoke;
     } 
     //  .card-text-desc {
@@ -32,10 +31,5 @@
     //   font-size: 35px;
     //   font-family: $bellota
     // }
-
-    // .card:hover{
-    //   background-color: $hoverCardColor;
-    // }
-  
   
 }
