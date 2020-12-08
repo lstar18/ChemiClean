@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ProductData from '../../../helpers/data/ProductData';
 import './SingleProduct.scss';
 // import SingleProductCard from '../../shared/SingleProductCard/SingleProductCard';
@@ -6,6 +7,7 @@ import './SingleProduct.scss';
 class SingleProduct extends React.Component {
   state = {
     product: {},
+    reviews: [],
   }
 
   getSingleProduct = () => {
@@ -22,7 +24,7 @@ class SingleProduct extends React.Component {
 
   render() {
     const { product } = this.state;
-
+    const AllProductLink = '/AllProducts';
     return (
       <div>
         <div className="SingleProduct d-flex flex-wrap justify-content-around mt-5">
@@ -35,6 +37,7 @@ class SingleProduct extends React.Component {
             <h3>EWG Rating: {product.rating}</h3>
             <p>Product Description: {product.description}</p>
             <p> Review of Product: </p>
+            <Link className="back-to-product-button btn btn-outline-dark" to={AllProductLink}> <i class="fas fa-arrow-circle-left"></i> </Link>
           </div>
         </div>
         </div>
