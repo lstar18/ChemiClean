@@ -16,10 +16,11 @@ namespace ChemiCleanBackEnd.Controllers
     public class ProductsController : ControllerBase
     {
         ProductsRepo _repo;
-        public ProductsController()
+       public ProductsController(ProductsRepo repo)
         {
-            _repo = new ProductsRepo();
+            _repo = repo;
         }
+        
         // GET: api/products
         [HttpGet]
         public IActionResult GetAllProducts()

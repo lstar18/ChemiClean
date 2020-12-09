@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChemiCleanBackEnd.Data;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,18 +13,28 @@ namespace ChemiCleanBackEnd.Controllers
     [ApiController]
     public class ReviewsController : ControllerBase
     {
-        // GET: api/<ReviewsController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        ReviewsRepo _repo;
+        public ReviewsController(ReviewsRepo repo)
         {
-            return new string[] { "value1", "value2" };
+            _repo = repo;
+        }
+       
+        // GET: api/reviews
+        [HttpGet]
+        public IActionResult GetAllReviews()
+        {
+            var allReviews = _repo.GetAll();
+
+            return Ok(allReviews);
         }
 
-        // GET api/<ReviewsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET api/reviews/2
+        [HttpGet("{reviewId}")]
+        public IActionResult GetById(int reviewId)
         {
-            return "value";
+            var singleProduct = _repo.GetByReviewId(reviewId);
+            if (singleProduct == null) return NotFound("No Product with that ID was found");
+            return Ok(singleProduct);
         }
 
         // POST api/<ReviewsController>
