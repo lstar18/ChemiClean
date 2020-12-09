@@ -17,9 +17,9 @@ namespace ChemiCleanBackEnd.Controllers
     public class UsersController : ControllerBase
     {
         UsersRepo _repo;
-        public UsersController()
+        public UsersController(UsersRepo repo)
         {
-            _repo = new UsersRepo();
+            _repo = repo;
         }
 
         // GET: api/users

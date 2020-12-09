@@ -19,7 +19,7 @@ class SingleProduct extends React.Component {
   }
 
   getReviewForSingleProduct = () => {
-    const { reviewId } = this.props.match.params;
+    const { productId } = this.props.match.params;
     ReviewData.getSingleReview(reviewId)
       .then((resp) => this.setState({ review: resp }))
       .catch((err) => console.error('Could not get single product', err));

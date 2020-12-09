@@ -14,10 +14,11 @@ namespace ChemiCleanBackEnd.Controllers
     public class ReviewsController : ControllerBase
     {
         ReviewsRepo _repo;
-        public ReviewsController()
+        public ReviewsController(ReviewsRepo repo)
         {
-            _repo = new ReviewsRepo();
+            _repo = repo;
         }
+       
         // GET: api/reviews
         [HttpGet]
         public IActionResult GetAllReviews()
