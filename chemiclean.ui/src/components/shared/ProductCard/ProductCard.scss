@@ -2,11 +2,11 @@
 {
   .card-body{
   color: rgb(8, 88, 8);
-  max-width: 100%;
+  max-width: 95%;
   max-height: 100%;
   background-color: rgba(255, 253, 253, 0.822);
   border:rgb(8, 88, 8) 3px solid;
-  border-radius: 1px;
+  border-radius: 5px;
 }
   
     .card-img {
@@ -19,17 +19,10 @@
       margin-top: 20px;
       background-color: whitesmoke;
     } 
-    //  .card-text-desc {
-    //    font-size: 30px;
-    //    font-family: $bellota
-    //  }
-    //  .card-text-date {
-    //   font-size: 25px;
-    //   font-family: $bellota
-    // }
-    // .card-title {
-    //   font-size: 35px;
-    //   font-family: $bellota
-    // }
+
+    .card-title {
+      color: rgb(8, 88, 8);
+      font-size: 40px;
+    }
   
 }

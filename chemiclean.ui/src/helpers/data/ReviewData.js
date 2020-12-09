@@ -12,5 +12,6 @@ const getSingleReview = (reviewId) => new Promise((resolve, reject) => {
     .then((response) => resolve(response.data))
     .catch((err) => reject(err));
 });
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default { getAllReviews, getSingleReview };

@@ -12,6 +12,10 @@ const getSingleProduct = (productId) => new Promise((resolve, reject) => {
     .then((response) => resolve(response.data))
     .catch((err) => reject(err));
 });
-
+const getSingleProductWithAllReviews = (productId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/productwithreview/${productId}/reviews`)
+    .then((response) => resolve(response.data))
+    .catch((err) => reject);
+});
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAllProducts, getSingleProduct };
+export default { getAllProducts, getSingleProduct, getSingleProductWithAllReviews };
