@@ -11,7 +11,13 @@ namespace ChemiCleanBackEnd.Data
 {
     public class UsersRepo
     {
-        const string _connectionString = "Server = localhost; Database = ChemiClean; Trusted_Connection = True;";
+        readonly string _connectionString;
+
+        public UsersRepo(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("ChemiClean");
+        }
+
 
         public IEnumerable<User> GetAll()
         {
