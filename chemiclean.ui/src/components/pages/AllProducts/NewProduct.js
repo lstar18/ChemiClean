@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './NewProduct.scss';
 import ProductData from '../../../helpers/data/ProductData';
+import authData from '../../../helpers/data/AuthData';
 
 class NewProduct extends React.Component {
   state = {
@@ -41,8 +42,10 @@ class NewProduct extends React.Component {
     } = this.state;
 
     const newProduct = {
-      name: childName,
-      birthday: childBirthday,
+      title,
+      description,
+      imageUrl,
+      rating,
       uid: authData.getUid(),
     };
 
