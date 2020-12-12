@@ -19,7 +19,7 @@ const loginUser = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider).then((cred) => {
     // get token from firebase
-    const userInfo = { firebaseUid: cred.user.uid };
+    const userInfo = { Uid: cred.user.uid };
 
     cred.user.getIdToken()
     // save the token to the session storage

@@ -7,6 +7,5 @@ const ProductShape = PropTypes.shape({
   description: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
   rating: PropTypes.string.isRequired,
-  reviewId: PropTypes.number.isRequired,
 });
 export default { ProductShape }; //eslint-disable-line

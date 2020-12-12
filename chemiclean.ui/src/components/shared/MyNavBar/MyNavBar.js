@@ -41,6 +41,9 @@ render() {
                   <NavLink tag={RRNavLink} to='/AllProducts'>Products</NavLink>
                 </NavItem>
                 <NavItem>
+               <NavLink tag={RRNavLink} to='/Products/new'>Add Product</NavLink>
+             </NavItem>
+                <NavItem>
                         <NavLink onClick={this.logoutEvent}>Logout</NavLink>
                     </NavItem>
               </Nav>

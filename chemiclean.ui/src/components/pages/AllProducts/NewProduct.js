@@ -49,9 +49,11 @@ class NewProduct extends React.Component {
       uid: authData.getUid(),
     };
 
-    ProductData.addNewProduct(newProduct)
-      .then(() => this.props.history.push('/home'))
+    ProductData.AddNewProduct(newProduct)
+      .then(() => this.props.history.push('/Products/new'))
       .catch((err) => console.error('cannot save new product', err));
+    // eslint-disable-next-line no-alert
+    alert('Your product has been added!');
   }
 
   render() {
@@ -103,7 +105,7 @@ class NewProduct extends React.Component {
          value={rating}
          onChange={this.ratingChange}/>
        </div>
-       <button type="submit" class="add-child-button btn btn-dark btn-lg" onClick={this.saveNewProduct}> Add <i className="fas fa-baby"></i></button>
+       <button type="submit" class="add-child-button btn btn-dark btn-lg" onClick={this.saveNewProduct}> Save Product <i className="fas fa-plus"></i></button>
      </form>
    </div>
     );

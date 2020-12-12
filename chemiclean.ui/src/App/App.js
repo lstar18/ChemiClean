@@ -15,6 +15,7 @@ import MyNavbar from '../components/shared/MyNavBar/MyNavBar';
 import Home from '../components/pages/Home/Home';
 import AllProducts from '../components/pages/AllProducts/AllProducts';
 import SingleProduct from '../components/pages/SingleProduct/SingleProduct';
+import NewProduct from '../components/pages/AllProducts/NewProduct';
 
 import fbConnection from '../helpers/data/connection';
 
@@ -64,6 +65,7 @@ class App extends React.Component {
                 <PrivateRoute path='/Reviews/:reviewId' component={SingleProduct} authed={authed}/>
                 <PrivateRoute path='/Product/:productId' component={SingleProduct} authed={authed}/>
                 <PrivateRoute path='/AllProducts' component={AllProducts} authed={authed}/>
+                <PrivateRoute path='/Products/new' component={NewProduct} authed={authed}/>
                 <PrivateRoute path='/home' component={Home} authed={authed}/>
                 <Redirect from="*" to="/home"/>
               </Switch>
