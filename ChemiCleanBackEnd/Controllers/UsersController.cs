@@ -11,6 +11,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChemiCleanBackEnd.Controllers
 {
+    public abstract class FirebaseEnabledController : ControllerBase
+    {
+        protected string UserId => User.FindFirst(x => x.Type == "user_id").Value;
+    }
     [Route("api/users")]
     [ApiController]
     
@@ -41,31 +45,31 @@ namespace ChemiCleanBackEnd.Controllers
         }
 
        [HttpPost]
-        public IActionResult AddNewUser(User userToAdd)
+        public IActionResult AddNewUser(User user)
         {
-            _repo.AddUser(userToAdd);
-            return Created($"/ api / users /{ userToAdd.id}", userToAdd);
+            _repo.AddUser(user);
+            return Created($"/api/users/{user.Id}", user);
         }
 
-        // PUT api/users/5
-        [HttpPut("{userId}")]
-        public IActionResult UpdatedUser(int userId, User userToUpdate)
-        {
-            var updatedUser = _repo.Update(userId, userToUpdate);
+        //// PUT api/users/5
+        //[HttpPut("{userId}")]
+        //public IActionResult UpdatedUser(int userId, User userToUpdate)
+        //{
+        //    var updatedUser = _repo.Update(userId, userToUpdate);
 
-            return Ok(updatedUser);
-        }
+        //    return Ok(updatedUser);
+        //}
 
-        // DELETE api/users/5
-        [HttpDelete("{userId}")]
-        public IActionResult DeleteUser(int userId)
-        {
-            if(_repo.GetById(userId) == null)
-            {
-                NotFound();
-            }
-            _repo.Remove(userId);
-            return Ok();
-        }
+        //// DELETE api/users/5
+        //[HttpDelete("{userId}")]
+        //public IActionResult DeleteUser(int userId)
+        //{
+        //    if(_repo.GetById(userId) == null)
+        //    {
+        //        NotFound();
+        //    }
+        //    _repo.Remove(userId);
+        //    return Ok();
+        //}
     }
 }

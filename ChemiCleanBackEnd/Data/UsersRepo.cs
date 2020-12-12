@@ -11,13 +11,19 @@ namespace ChemiCleanBackEnd.Data
 {
     public class UsersRepo
     {
-        const string _connectionString = "Server = localhost; Database = ChemiClean; Trusted_Connection = True;";
+        readonly string _connectionString;
+
+        public UsersRepo(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("ChemiClean");
+        }
+
 
         public IEnumerable<User> GetAll()
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = $"select * from users";
+            var sql = $"select * from Users";
 
             var users = db.Query<User>(sql);
 
@@ -29,10 +35,10 @@ namespace ChemiCleanBackEnd.Data
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"select *
-                        from users
-                        where id = @uid";
+                        from Users
+                        where Id = @uid";
 
-            var parameters = new { uid = userId };
+            var parameters = new { id = userId };
 
             var singleUser = db.QueryFirstOrDefault<User>(sql, parameters);
 
@@ -41,64 +47,48 @@ namespace ChemiCleanBackEnd.Data
 
         public void AddUser(User userToAdd)
         {
-            using var db = new SqlConnection(_connectionString);
-
             var sql = @"INSERT INTO [dbo].[Users]
-                                ([uid]
-                               ,[username]
-                               ,[FirstName]
-                               ,[LastName]
-                               ,[Email]
-                               ,[Password]
-                               ,[userPhotoUrl])
+                                ([Uid]
+                                    )
                         Output inserted.id
 
                      VALUES
-                            (@uid, @username, @FirstName, @LastName, @Email, @Password, @userPhotoUrl)";
+                            (@uid)";
+
+            using var db = new SqlConnection(_connectionString);
+
             var newId = db.ExecuteScalar<int>(sql, userToAdd);
 
-            userToAdd.id = newId;
+            userToAdd.Id = newId;
         }
 
-        public void Remove(int userId)
-        {
-            var sql = @"DELETE
-                        FROM [dbo].[Users]
-                        WHERE id = @id";
-            using var db = new SqlConnection(_connectionString);
-            db.Execute(sql, new { id = userId });
-        }
+        //public void Remove(int userId)
+        //{
+        //    var sql = @"DELETE
+        //                FROM [dbo].[Users]
+        //                WHERE id = @id";
+        //    using var db = new SqlConnection(_connectionString);
+        //    db.Execute(sql, new { id = userId });
+        //}
 
-        public User Update(int id, User userToUpdate)
-        {
-            var sql = @"UPDATE [dbo].[Users]
-                         SET    [uid] = @uid
-                               ,[username] = @username
-                               ,[FirstName] = @firstName
-                               ,[LastName] = @lastName
-                               ,[Email] = @email
-                               ,[Password] = @password
-                               ,[userPhotoUrl] = @userPhotoUrl
-                        OUTPUT inserted.* 
-                        WHERE id = @id";
-            using var db = new SqlConnection(_connectionString);
+        //public User Update(int id, User userToUpdate)
+        //{
+        //    var sql = @"UPDATE [dbo].[Users]
+        //                 SET    [uid] = @uid
+        //                         OUTPUT inserted.* 
+        //                WHERE id = @id";
+        //    using var db = new SqlConnection(_connectionString);
 
-            var parameters = new
-            {
-                uid = userToUpdate.uid,
-                username = userToUpdate.username,
-                firstName = userToUpdate.FirstName,
-                lastName = userToUpdate.LastName,
-                email = userToUpdate.Email,
-                password = userToUpdate.Password,
-                userPhotoUrl = userToUpdate.userPhotoUrl,
-                id = id
-            };
+        //    var parameters = new
+        //    {
+        //        uid = userToUpdate.uid,
+        //        id = id
+        //    };
 
-            var updatedUser = db.QueryFirstOrDefault<User>(sql, parameters);
+        //    var updatedUser = db.QueryFirstOrDefault<User>(sql, parameters);
 
-            return updatedUser;
-        }
+        //    return updatedUser;
+        //}
 
     }
 }

@@ -26,7 +26,7 @@ class AllProducts extends React.Component {
     return (
       <div className="AllProducts text-center">
         <h1 className="page-title mb-4"> Products </h1>
-        <div className="ProductContainer d-flex flex-wrap justify-content-around">
+        <div className="ProductContainer d-flex flex-wrap row-3 justify-content-around">
           {buildProductPage}
         </div>
       </div>

@@ -15,9 +15,5 @@ namespace ChemiCleanBackEnd.Models
         public string Rating { get; set; }
         public List<Review> Reviews {get;set;}
 
-        //public int ReviewId { get; set; }
-        //public string Review { get; set; }
-        //public string ReviewTitle { get; set; }
-        //public DateTime DatePosted { get; set; }
     }
 }
