@@ -19,15 +19,14 @@ namespace ChemiCleanBackEnd.Data
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"INSERT INTO [dbo].[Products]
-                               ([uid]
+                               ([Uid]
                                ,[title]
                                ,[description]
                                ,[imageUrl]
-                               ,[rating]
-                               ,[reviewId])
+                               ,[rating])
                                Output inserted.ProductId
                             VALUES
-                                (@uid,@title,@description,@imageUrl,@rating,@reviewId)";
+                                (@uid,@title,@description,@imageUrl,@rating)";
 
             var newId = db.ExecuteScalar<int>(sql, productToAdd);
 
@@ -63,12 +62,11 @@ namespace ChemiCleanBackEnd.Data
         public Product Update(int id, Product product)
         {
             var sql = @"UPDATE [dbo].[Products]
-                            SET [uid] = @uid
+                            SET [Uid] = @uid
                                ,[title] = @title
                                ,[description] = @description
                                ,[imageUrl] = @imageUrl
                                ,[rating] = @rating
-                               ,[reviewId] = @reviewId
                             output inserted.*
                             WHERE ProductId = @productId";
             using var db = new SqlConnection(_connectionString);
@@ -76,12 +74,11 @@ namespace ChemiCleanBackEnd.Data
 
             var parameters = new
             {
-                product.uid,
+                product.Uid,
                 product.title,
                 product.description,
                 product.imageUrl,
                 product.rating,
-                product.reviewId,
                 ProductId = id
             };
 
