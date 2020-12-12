@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductData from '../../../helpers/data/ProductData';
+import FavoritesData from '../../../helpers/data/FavoritesData';
 import './SingleProduct.scss';
 import ReviewCard from '../../shared/ReviewCard/ReviewCard';
 
@@ -14,11 +15,20 @@ class SingleProduct extends React.Component {
     ProductData.getSingleProductWithAllReviews(productId)
       .then((response) => this.setState({ product: response }))
       .catch((err) => console.error('cannot get product with reviews', err));
-    console.error(this.state);
   }
 
   componentDidMount() {
     this.getSingleProductWithReviews();
+  }
+
+  addToFavorites = (e) => {
+    e.preventDefault();
+    const { productId } = this.props.match.params;
+    console.error(productId);
+    FavoritesData.addSingleFavoriteProduct(productId)
+      .then(() => this.props.history.push('/home'))
+      .catch((err) => console.error('cannot add favorites to home page', err));
+    console.error(productId);
   }
 
   render() {
@@ -38,7 +48,8 @@ class SingleProduct extends React.Component {
             <h2> {product.title} </h2>
             <h3>EWG Rating: {product.rating}</h3>
             <p>Product Description: {product.description}</p>
-            <div className="ReviewProduct-details mt-5">
+            <button className="add-to-favorites-button btn btn-outline-danger mr-3" onClick={this.addToFavorites}>  Favorite <i className="fas fa-heart"></i></button>
+            <div className="ReviewProduct-details mt-5 mr-3">
             <h4> <strong> Reviews: </strong> </h4>
               {buildreviews}
             </div>
