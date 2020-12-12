@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './NewProduct.scss';
+import ProductData from '../../../helpers/data/ProductData';
 
 class NewProduct extends React.Component {
   state = {
@@ -28,6 +29,26 @@ class NewProduct extends React.Component {
   ratingChange = (e) => {
     e.preventDefault();
     this.setState({ rating: e.target.value });
+  }
+
+  saveNewProduct = (e) => {
+    e.preventDefault();
+    const {
+      title,
+      description,
+      imageUrl,
+      rating,
+    } = this.state;
+
+    const newProduct = {
+      name: childName,
+      birthday: childBirthday,
+      uid: authData.getUid(),
+    };
+
+    ProductData.addNewProduct(newProduct)
+      .then(() => this.props.history.push('/home'))
+      .catch((err) => console.error('cannot save new product', err));
   }
 
   render() {
@@ -79,7 +100,7 @@ class NewProduct extends React.Component {
          value={rating}
          onChange={this.ratingChange}/>
        </div>
-       <button type="submit" class="add-child-button btn btn-dark btn-lg" onClick={this.saveChild}> Add <i className="fas fa-baby"></i></button>
+       <button type="submit" class="add-child-button btn btn-dark btn-lg" onClick={this.saveNewProduct}> Add <i className="fas fa-baby"></i></button>
      </form>
    </div>
     );
