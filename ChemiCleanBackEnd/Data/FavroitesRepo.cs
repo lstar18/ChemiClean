@@ -35,9 +35,20 @@ namespace ChemiCleanBackEnd.Data
             return favorite;
         }
 
-        internal object GetByFavoriteId(int favoritesId)
+        public void AddFavorite(Favorites productToAdd)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"INSERT INTO [dbo].[Favorites]
+                               ([Uid]
+                               ,[ProductId]
+                               Output inserted.Id
+                            VALUES
+                                (@uid,@pid)";
+
+            var newId = db.ExecuteScalar<int>(sql, productToAdd);
+
+            productToAdd.Id = newId;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ChemiCleanBackEnd.Data;
+using ChemiCleanBackEnd.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,13 +18,13 @@ namespace ChemiCleanBackEnd.Controllers
         {
             _repo = repo;
         }
-        [HttpGet("{favoritesId}")]
-        public IActionResult GetByFavoriteId(int favoritesId)
+        [HttpPost]
+        public IActionResult CreateFavorite(Favorites favorite)
         {
-            var singleFavorite = _repo.GetByFavoriteId(favoritesId);
-            if (singleFavorite == null) return NotFound("No Favorite with that ID was found");
-            return Ok(singleFavorite);
-        }
-    }
+            _repo.AddFavorite(favorite);
 
+            return Created($"/api/favorites/{favorite.ProductId}", favorite);
+        }
+
+    }
 }
