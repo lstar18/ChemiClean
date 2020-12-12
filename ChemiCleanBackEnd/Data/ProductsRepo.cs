@@ -5,15 +5,18 @@ using System.Threading.Tasks;
 using Dapper;
 using ChemiCleanBackEnd.Models;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace ChemiCleanBackEnd.Data
 {
     public class ProductsRepo
     {
         static List<Product> _products = new List<Product>();
-
-        const string _connectionString = "Server=localhost; Database=ChemiClean; Trusted_Connection=true;";
-
+        readonly string _connectionString;
+        public ProductsRepo(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("ChemiClean");
+        }
         public void AddProduct(Product productToAdd)
         {
             using var db = new SqlConnection(_connectionString);
