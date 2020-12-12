@@ -44,17 +44,12 @@ namespace ChemiCleanBackEnd.Data
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"INSERT INTO [dbo].[Users]
-                                ([uid]
-                               ,[username]
-                               ,[FirstName]
-                               ,[LastName]
-                               ,[Email]
-                               ,[Password]
-                               ,[userPhotoUrl])
+                                ([Uid]
+                                    )
                         Output inserted.id
 
                      VALUES
-                            (@uid, @username, @FirstName, @LastName, @Email, @Password, @userPhotoUrl)";
+                            (@uid)";
             var newId = db.ExecuteScalar<int>(sql, userToAdd);
 
             userToAdd.id = newId;
