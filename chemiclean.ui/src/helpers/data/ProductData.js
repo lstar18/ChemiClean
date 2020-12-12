@@ -17,5 +17,9 @@ const getSingleProductWithAllReviews = (productId) => new Promise((resolve, reje
     .then((response) => resolve(response.data))
     .catch((err) => reject);
 });
+const AddNewProduct = (newProduct) => axios.post(`${baseUrl}/products`, newProduct);
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAllProducts, getSingleProduct, getSingleProductWithAllReviews };
+export default {
+  getAllProducts, getSingleProduct, getSingleProductWithAllReviews, AddNewProduct,
+};
