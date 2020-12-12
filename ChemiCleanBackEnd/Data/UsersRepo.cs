@@ -48,21 +48,12 @@ namespace ChemiCleanBackEnd.Data
         public void AddUser(User userToAdd)
         {
             var sql = @"INSERT INTO [dbo].[Users]
-<<<<<<< HEAD
                                 ([Uid]
                                     )
                         Output inserted.id
 
                      VALUES
                             (@uid)";
-            var newId = db.ExecuteScalar<int>(sql, userToAdd);
-=======
-                                ([Uid])
-                        Output inserted.id
-
-                     VALUES
-                        (@uid)";
->>>>>>> ls-auth
 
             using var db = new SqlConnection(_connectionString);
 
