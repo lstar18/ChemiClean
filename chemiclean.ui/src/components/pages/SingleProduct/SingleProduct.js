@@ -21,22 +21,22 @@ class SingleProduct extends React.Component {
     this.getSingleProductWithReviews();
   }
 
-  addToFavorites = (e) => {
-    e.preventDefault();
-    const { productId } = this.props.match.params;
-    console.error(productId);
-    FavoritesData.addSingleFavoriteProduct(productId)
-      .then(() => this.props.history.push('/home'))
-      .catch((err) => console.error('cannot add favorites to home page', err));
-  }
+   addToFavorites = (e) => {
+     e.preventDefault();
+     const { productId } = this.props.match.params;
+     console.error(productId);
+     FavoritesData.addSingleFavoriteProduct(productId)
+       .then(() => this.props.history.push('/home'))
+       .catch((err) => console.error('cannot add favorites to home page', err));
+   }
 
-  render() {
-    const { product } = this.state;
-    const buildreviews = product.reviews.map((review, index) => (
+   render() {
+     const { product } = this.state;
+     const buildreviews = product.reviews.map((review, index) => (
       <ReviewCard key={index} review={review} product={product} />
-    ));
-    const AllProductLink = '/AllProducts';
-    return (
+     ));
+     const AllProductLink = '/AllProducts';
+     return (
       <div>
         <div className="SingleProduct d-flex flex-wrap justify-content-around mt-5">
         <div className="row">
@@ -58,7 +58,7 @@ class SingleProduct extends React.Component {
         </div>
         </div>
       </div>
-    );
-  }
+     );
+   }
 }
 export default SingleProduct;

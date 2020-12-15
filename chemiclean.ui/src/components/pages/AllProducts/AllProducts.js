@@ -18,10 +18,16 @@ class AllProducts extends React.Component {
     this.getProducts();
   }
 
+  removeProduct = (productId) => {
+    ProductData.removeProduct(productId)
+      .then(() => this.getProducts())
+      .catch((err) => console.error('cannot remove milestone', err));
+  }
+
   render() {
     const { products } = this.state;
     const buildProductPage = products.map((product, index) => (
-      <ProductCard key={index} product={product} />
+      <ProductCard key={index} product={product} removeProduct={this.removeProduct} />
     ));
     return (
       <div className="AllProducts text-center">
