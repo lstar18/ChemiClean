@@ -7,7 +7,7 @@ namespace ChemiCleanBackEnd.Models
 {
     public class Favorites
     {
-        public int Uid { get; set; }
+        public string Uid { get; set; }
         public int Id { get; set; }
         public int ProductId { get; set; }
     }

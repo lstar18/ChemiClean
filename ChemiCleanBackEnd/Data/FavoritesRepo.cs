@@ -17,7 +17,17 @@ namespace ChemiCleanBackEnd.Data
         {
             _connectionString = configuration.GetConnectionString("ChemiClean");
         }
-        public Favorites GetByFavoriteId(string Uid, int productId)
+        public IEnumerable<Favorites> GetAll()
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = $"select * from favorites";
+
+            var favorites = db.Query<Favorites>(sql);
+
+            return favorites;
+        }
+        public Favorites GetByFavoriteByProductId(string UserId, int productId)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -28,27 +38,27 @@ namespace ChemiCleanBackEnd.Data
 
             var parameters = new 
             { pid = productId,
-              fuid = Uid
+              fuid = UserId,
             };
             var favorite = db.QueryFirstOrDefault<Favorites>(query, parameters);
 
             return favorite;
         }
 
-        public void AddFavorite(Favorites productToAdd)
+        public void AddFavorite(Favorites favoriteToAdd)
         {
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"INSERT INTO [dbo].[Favorites]
                                ([Uid]
-                               ,[ProductId]
-                               Output inserted.Id
+                               ,[ProductId])
+                               Output inserted.favoriteId
                             VALUES
-                                (@uid,@pid)";
+                                (@uid,@productid)";
 
-            var newId = db.ExecuteScalar<int>(sql, productToAdd);
+            var newId = db.ExecuteScalar<int>(sql, favoriteToAdd);
 
-            productToAdd.Id = newId;
+            favoriteToAdd.Id = newId;
         }
     }
 }
