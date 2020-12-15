@@ -56,17 +56,17 @@ namespace ChemiCleanBackEnd.Controllers
             return Ok(updatedProducts);
         }
 
-        // DELETE api/products/2
-        //[HttpDelete("{id}")]
-        //public IActionResult DeleteProduct(int id)
-        //{
-        //    if (_repo.GetById(id) == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    _repo.Remove(id);
+        //DELETE api/products/2
+        [HttpDelete("{productId}")]
+        public IActionResult DeleteProduct(int productId)
+        {
+            if (_repo.GetById(productId) == null)
+            {
+                return NotFound();
+            }
+            _repo.Remove(productId);
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
     }
 }
