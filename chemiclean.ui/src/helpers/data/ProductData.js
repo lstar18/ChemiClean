@@ -18,8 +18,9 @@ const getSingleProductWithAllReviews = (productId) => new Promise((resolve, reje
     .catch((err) => reject);
 });
 const AddNewProduct = (newProduct) => axios.post(`${baseUrl}/products`, newProduct);
+const removeProduct = (productId) => axios.delete(`${baseUrl}/products/${productId}`);
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  getAllProducts, getSingleProduct, getSingleProductWithAllReviews, AddNewProduct,
+  getAllProducts, getSingleProduct, getSingleProductWithAllReviews, AddNewProduct, removeProduct,
 };

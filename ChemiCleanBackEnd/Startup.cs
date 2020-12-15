@@ -36,6 +36,7 @@ namespace ChemiCleanBackEnd
             services.AddTransient<ProductsRepo>();
             services.AddTransient<ReviewsRepo>();
             services.AddTransient<UsersRepo>();
+            services.AddTransient<FavoritesRepo>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -67,6 +68,7 @@ namespace ChemiCleanBackEnd
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseCors(policy => policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
