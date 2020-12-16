@@ -17,7 +17,7 @@ class ProductCard extends React.Component {
     const productLink = `Product/${product.productId}`;
     const UserDelete = () => {
       if (product.uid === Uid) {
-        return <button className="delete-milestone-button btn btn-outline-danger mt-3 ml-4" onClick={() => removeProduct(product.productId)}> <i className="fas fa-trash"> </i>  </button>;
+        return <button className="delete-produc-button btn btn-outline-danger mt-3 ml-4" onClick={() => removeProduct(product.productId)}> <i className="fas fa-trash"> </i>  </button>;
       }
       return <></>;
     };

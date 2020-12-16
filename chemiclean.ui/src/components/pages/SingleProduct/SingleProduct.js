@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductData from '../../../helpers/data/ProductData';
 import FavoritesData from '../../../helpers/data/FavoritesData';
+import ReviewData from '../../../helpers/data/ReviewData';
+import authData from '../../../helpers/data/AuthData';
 import './SingleProduct.scss';
 import ReviewCard from '../../shared/ReviewCard/ReviewCard';
 import AddReview from '../Reviews/AddReview';
@@ -37,10 +39,16 @@ class SingleProduct extends React.Component {
      this.getSingleProductWithReviews();
    }
 
+   removeReview = (reviewId) => {
+     ReviewData.removeReview(reviewId)
+       .then(() => this.getSingleProductsWithReviews())
+       .catch((err) => console.error('cannot remove product', err));
+   }
+
    render() {
      const { product } = this.state;
      const buildreviews = product.reviews.map((review, index) => (
-      <ReviewCard key={index} review={review} product={product} />
+      <ReviewCard key={index} review={review} product={product} removeReview={this.removeReview} Uid={authData.getUid()}/>
      ));
 
      const reviewForm = () => {
