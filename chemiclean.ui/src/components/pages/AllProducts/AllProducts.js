@@ -22,7 +22,7 @@ class AllProducts extends React.Component {
   removeProduct = (productId) => {
     ProductData.removeProduct(productId)
       .then(() => this.getProducts())
-      .catch((err) => console.error('cannot remove milestone', err));
+      .catch((err) => console.error('cannot remove product', err));
   }
 
   render() {
