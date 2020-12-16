@@ -13,9 +13,14 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const { product, removeProduct } = this.props;
+    const { product, removeProduct, Uid } = this.props;
     const productLink = `Product/${product.productId}`;
-
+    const UserDelete = () => {
+      if (product.uid === Uid) {
+        return <button className="delete-milestone-button btn btn-outline-danger mt-3 ml-4" onClick={() => removeProduct(product.productId)}> <i className="fas fa-trash"> </i>  </button>;
+      }
+      return <></>;
+    };
     return (
       <div className="ProductCard d-flex flex-wrap justify-content-center co-12">
         <div className="card-body text-center">
@@ -23,7 +28,7 @@ class ProductCard extends React.Component {
           <img className="card-img mb-3" alt={product.title} src={product.imageUrl} />
           <h5 className="card-detail"> EWG Rating: {product.rating} </h5>
           <Link className="view-single-product-button btn btn-outline-dark" to={productLink}> Product Details  <i className="fas fa-eye"></i> </Link>
-          <button className="delete-milestone-button btn btn-outline-danger mt-3 ml-4" onClick={() => removeProduct(product.productId)}> <i className="fas fa-trash"> </i>  </button>
+          {UserDelete()}
         </div>
      </div>
     );

@@ -12,6 +12,7 @@ const getSingleReview = (reviewId) => new Promise((resolve, reject) => {
     .then((response) => resolve(response.data))
     .catch((err) => reject(err));
 });
+const addNewReview = (newReview) => axios.post(`${baseUrl}/reviews`, newReview);
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAllReviews, getSingleReview };
+export default { getAllReviews, getSingleReview, addNewReview };

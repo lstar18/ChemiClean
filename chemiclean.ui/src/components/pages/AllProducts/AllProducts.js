@@ -2,6 +2,7 @@ import React from 'react';
 import './AllProducts.scss';
 import ProductData from '../../../helpers/data/ProductData';
 import ProductCard from '../../shared/ProductCard/ProductCard';
+import authData from '../../../helpers/data/AuthData';
 
 class AllProducts extends React.Component {
   state = {
@@ -27,7 +28,7 @@ class AllProducts extends React.Component {
   render() {
     const { products } = this.state;
     const buildProductPage = products.map((product, index) => (
-      <ProductCard key={index} product={product} removeProduct={this.removeProduct} />
+      <ProductCard key={index} product={product} removeProduct={this.removeProduct} Uid={authData.getUid()}/>
     ));
     return (
       <div className="AllProducts text-center">
