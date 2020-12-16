@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ChemiCleanBackEnd.Data;
+using ChemiCleanBackEnd.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -39,8 +40,11 @@ namespace ChemiCleanBackEnd.Controllers
 
         // POST api/<ReviewsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult CreateReview(Review review)
         {
+            _repo.AddReview(review);
+
+            return Created($"api/reviews/{review.ReviewId}", review);
         }
 
         // PUT api/<ReviewsController>/5

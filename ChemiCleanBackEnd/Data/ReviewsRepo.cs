@@ -1,6 +1,7 @@
 ﻿using ChemiCleanBackEnd.Models;
 using Dapper;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,11 @@ namespace ChemiCleanBackEnd.Data
     {
         static List<Review> _reviews = new List<Review>();
 
-        const string _connectionString = "Server = localhost; Database = ChemiClean; Trusted_Connection = True;";
+        readonly string _connectionString;
+        public ReviewsRepo(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("ChemiClean");
+        }
         public IEnumerable<Review> GetAll()
         {
             using var db = new SqlConnection(_connectionString);
@@ -37,6 +42,23 @@ namespace ChemiCleanBackEnd.Data
             var reviews = db.QueryFirstOrDefault<Review>(query, parameters);
 
             return reviews;
+        }
+        public void AddReview(Review reviewToAdd)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"INSERT INTO [dbo].[Reviews]
+                               ([Uid]
+                               ,[review]
+                               ,[reviewTitle]
+                               ,[ProductId])
+                               Output inserted.ReviewId
+                            VALUES
+                                (@uid,@review,@reviewTitle,@ProductId)";
+
+            var newId = db.ExecuteScalar<int>(sql, reviewToAdd);
+
+            reviewToAdd.ReviewId = newId;
         }
     }
 }
