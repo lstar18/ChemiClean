@@ -54,9 +54,16 @@ namespace ChemiCleanBackEnd.Controllers
         }
 
         // DELETE api/<ReviewsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{reviewId}")]
+        public IActionResult DeleteReview(int reviewId)
         {
+            if (_repo.GetByReviewId(reviewId) == null)
+            {
+                return NotFound();
+            }
+            _repo.Remove(reviewId);
+
+            return Ok();
         }
     }
 }

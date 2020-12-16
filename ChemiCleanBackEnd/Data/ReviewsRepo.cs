@@ -60,5 +60,16 @@ namespace ChemiCleanBackEnd.Data
 
             reviewToAdd.ReviewId = newId;
         }
+
+        public void Remove(int reviewId)
+        {
+            var sql = @"DELETE
+                        FROM [dbo].[Reviews]
+                        WHERE reviewId = @reveiwId";
+
+            using var db = new SqlConnection(_connectionString);
+
+            db.Execute(sql, new { reviewId = reviewId });
+        }
     }
 }
