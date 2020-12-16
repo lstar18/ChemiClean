@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './AddReview.scss';
-import ProductData from '../../../helpers/data/ProductData';
+import ProductShape from '../../../helpers/propz/ProductShape';
+import ReviewData from '../../../helpers/data/ReviewData';
 import authData from '../../../helpers/data/AuthData';
 
 class AddReview extends React.Component {
   state = {
     reviewTitle: '',
     review: '',
+    product: {},
+  }
+
+  static propTypes = {
+    product: ProductShape.ProductShape,
   }
 
   reviewTitleChange = (e) => {
@@ -22,22 +28,25 @@ class AddReview extends React.Component {
 
   saveNewReview = (e) => {
     e.preventDefault();
+    const { product } = this.props;
     const {
       reviewTitle,
       review,
     } = this.state;
 
     const newReview = {
+      productId: product.productId,
       reviewTitle,
       review,
       uid: authData.getUid(),
     };
 
-    ProductData.AddNewReview(newReview)
-      .then(() => this.props.history.push('/Reviews/${reviewId}'))
+    ReviewData.addNewReview(newReview)
+      .then(this.props.onSave)
       .catch((err) => console.error('cannot save new review', err));
     // eslint-disable-next-line no-alert
-    alert('Your product has been added!');
+    alert('Your review has been added!');
+    console.error(newReview);
   }
 
   render() {

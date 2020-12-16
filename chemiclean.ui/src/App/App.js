@@ -18,6 +18,7 @@ import SingleProduct from '../components/pages/SingleProduct/SingleProduct';
 import NewProduct from '../components/pages/AllProducts/NewProduct';
 
 import fbConnection from '../helpers/data/connection';
+import AddReview from '../components/pages/Reviews/AddReview';
 
 fbConnection();
 
@@ -68,6 +69,7 @@ class App extends React.Component {
                 <PrivateRoute path='/Product/:productId' component={SingleProduct} authed={authed}/>
                 <PrivateRoute path='/AllProducts' component={AllProducts} authed={authed}/>
                 <PrivateRoute path='/Products/new' component={NewProduct} authed={authed}/>
+                <PrivateRoute path='/Reviews/new' component={AddReview} authed={authed}/>
                 <PrivateRoute path='/home' component={Home} authed={authed}/>
                 <Redirect from="*" to="/home"/>
               </Switch>
