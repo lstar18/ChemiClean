@@ -1,5 +1,6 @@
 ﻿using ChemiCleanBackEnd.Models;
 using Dapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -30,21 +31,21 @@ namespace ChemiCleanBackEnd.Data
             return users;
         }
 
-        public User GetById(int userId)
+      
+        public User GetUserByUid(string UserId)
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"select *
-                        from Users
-                        where Id = @uid";
+            var query = @"select * from Users
+                            where Uid = @Fuid";
 
-            var parameters = new { id = userId };
+            var parameters = new { Fuid = UserId };
 
-            var singleUser = db.QueryFirstOrDefault<User>(sql, parameters);
 
-            return singleUser;
+            var user = db.QueryFirstOrDefault<User>(query, parameters);
+
+            return user;
         }
-
         public void AddUser(User userToAdd)
         {
             var sql = @"INSERT INTO [dbo].[Users]

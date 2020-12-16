@@ -34,14 +34,14 @@ namespace ChemiCleanBackEnd.Controllers
 
             return Ok(allUsers);
         }
-
-        // GET api/users/1
-        [HttpGet("{userId}")]
-        public IActionResult GetById(int userId)
+        [HttpGet("{UserId}")]
+        public IActionResult GetUserByUid(string UserId)
         {
-            var singleUser = _repo.GetById(userId);
-            if (singleUser == null) return NotFound("No User with that ID was found");
-            return Ok(singleUser); 
+            var user = _repo.GetUserByUid(UserId);
+
+            if (user == null) return NotFound("No user found with that Firebase uid");
+
+            return Ok(user);
         }
 
        [HttpPost]
