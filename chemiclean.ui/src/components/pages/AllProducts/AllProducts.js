@@ -31,8 +31,8 @@ class AllProducts extends React.Component {
       <ProductCard key={index} product={product} removeProduct={this.removeProduct} Uid={authData.getUid()}/>
     ));
     return (
-      <div className="AllProducts text-center">
-        <h1 className="page-title mb-4"> Products </h1>
+      <div className="AllProducts">
+        <h1 className="page-title text-center mb-4"> Products </h1>
         <div className="ProductContainer d-flex flex-wrap row-3 justify-content-around">
           {buildProductPage}
         </div>
