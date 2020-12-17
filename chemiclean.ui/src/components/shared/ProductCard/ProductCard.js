@@ -22,11 +22,18 @@ class ProductCard extends React.Component {
       return <></>;
     };
     return (
-      <div className="ProductCard d-flex flex-wrap justify-content-center co-12">
-        <div className="card-body text-center">
-          <h3 className="card-title">{product.title}</h3>
-          <img className="card-img mb-3" alt={product.title} src={product.imageUrl} />
-          <h5 className="card-detail"> EWG Rating: {product.rating} </h5>
+    // <div className="ProductCard d-flex flex-wrap justify-content-center co-12">
+    //   <div className="card-body text-center">
+    //     <h3 className="card-title">{product.title}</h3>
+    //     <img className="card-img mb-3" alt={product.title} src={product.imageUrl} />
+    //     <h5 className="card-detail"> EWG Rating: {product.rating} </h5>
+
+    //   </div>
+      <div class="productCard mb-3 d-flex flex-wrap justify-content-center col-4">
+        <div class="card-body">
+        <img src={product.imageUrl} className="card-img-top" alt={product.title}/>
+          <h5 className="card-title text-center">{product.title}</h5>
+          <p class="card-text">EWG Rating: {product.rating} </p>
           <Link className="view-single-product-button btn btn-outline-dark" to={productLink}> Product Details  <i className="fas fa-eye"></i> </Link>
           {UserDelete()}
         </div>
