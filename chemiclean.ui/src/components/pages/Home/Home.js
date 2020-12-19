@@ -1,7 +1,18 @@
 /* eslint-disable max-len */
 import React from 'react';
+import ProductData from '../../../helpers/data/ProductData';
 
 class Home extends React.Component {
+  state = {
+    products: [],
+  }
+
+  getProducts = () => {
+    ProductData.getAllProducts()
+      .then((response) => { this.setState({ products: response }); })
+      .catch((err) => console.error('cannot get products', err));
+  }
+
   render() {
     return (
     <div class="jumbotron jumbotron-fluid">

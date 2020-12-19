@@ -61,7 +61,21 @@ namespace ChemiCleanBackEnd.Data
 
             return products;
         }
+        public IEnumerable<Product> GetAllFavoritesByUid(string UserId)
+        {
+            using var db = new SqlConnection(_connectionString);
 
+            var sql = @"select p.* 
+                                from favorites f
+                                join products p on p.productid = f.productid
+                                where f.Uid = @fuid";
+
+            var parameters = new { fuid = UserId };
+
+            var favorites = db.Query<Product>(sql, parameters);
+
+            return favorites;
+        }
         public Product Update(int id, Product product)
         {
             var sql = @"UPDATE [dbo].[Products]

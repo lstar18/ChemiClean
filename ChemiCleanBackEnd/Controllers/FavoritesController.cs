@@ -35,15 +35,6 @@ namespace ChemiCleanBackEnd.Controllers
             return Ok(singleFavoriteProduct);
         }
 
-        [HttpGet("{UserId}")]
-        public IActionResult GetFavoritesByUid(string UserId)
-        {
-            var favorite = _repo.GetAllFavoritesByUid(UserId);
-
-            if (favorite == null) return NotFound("No favorites for this UserId");
-
-            return Ok(favorite);
-        }
-
+     
     }
 }
