@@ -65,11 +65,11 @@ namespace ChemiCleanBackEnd.Data
         {
             var sql = @"DELETE
                         FROM [dbo].[Reviews]
-                        WHERE reviewId = @reveiwId";
+                        WHERE reviewId = @reviewId";
 
             using var db = new SqlConnection(_connectionString);
 
-            db.Execute(sql, new { reviewId = reviewId });
+            db.Execute(sql, new { ReviewId = reviewId });
         }
     }
 }
