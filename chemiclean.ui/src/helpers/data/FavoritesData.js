@@ -1,12 +1,9 @@
 import axios from 'axios';
 import { baseUrl } from './constants.json';
 
-const getFavoritesByUid = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/favorites`)
-    .then((response) => resolve(response.data))
-    .catch((err) => reject(err));
-});
 const addSingleFavoriteProduct = (productId) => axios.post(`${baseUrl}/favorites/${productId}`, productId);
 
+const removeFavorite = (favoriteId) => axios.delete(`${baseUrl}/favorites/${favoriteId}`);
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { addSingleFavoriteProduct, getFavoritesByUid };
+export default { addSingleFavoriteProduct, removeFavorite };

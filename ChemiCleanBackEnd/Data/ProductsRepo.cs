@@ -61,18 +61,18 @@ namespace ChemiCleanBackEnd.Data
 
             return products;
         }
-        public IEnumerable<Product> GetAllFavoritesByUid(string UserId)
+        public IEnumerable<FavoriteProducts> GetAllFavoritesByUid(string UserId)
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"select p.* 
+            var sql = @"select p.* , f.favoriteId
                                 from favorites f
-                                join products p on p.productid = f.productid
+                                join products p on p.productId = f.productId
                                 where f.Uid = @fuid";
 
             var parameters = new { fuid = UserId };
 
-            var favorites = db.Query<Product>(sql, parameters);
+            var favorites = db.Query<FavoriteProducts>(sql, parameters);
 
             return favorites;
         }

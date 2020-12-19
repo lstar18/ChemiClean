@@ -47,12 +47,14 @@ namespace ChemiCleanBackEnd.Controllers
 
             return Created($"/api/products/{product.ProductId}", product);
         }
-        [HttpGet]
+        [HttpGet("favorites")]
         public IActionResult GetFavoritesByUid()
         {
             var favorite = _repo.GetAllFavoritesByUid(UserId);
 
             if (favorite == null) return NotFound("No favorites for this UserId");
+
+            var x = favorite.First().FavoriteId;
 
             return Ok(favorite);
         }
