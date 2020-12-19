@@ -31,8 +31,10 @@ class SingleProduct extends React.Component {
      const { productId } = this.props.match.params;
      console.error(productId);
      FavoritesData.addSingleFavoriteProduct(productId)
-       .then(() => this.props.history.push('/home'))
-       .catch((err) => console.error('cannot add favorites to home page', err));
+       .then(() => this.props.history.push(`/Products/${productId}`))
+       .catch((err) => console.error('cannot add favorites to favorites table', err));
+     // eslint-disable-next-line no-alert
+     alert('Your favorite has been added!');
    }
 
    reviewSaved = () => {
