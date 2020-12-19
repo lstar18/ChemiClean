@@ -18,6 +18,14 @@ namespace ChemiCleanBackEnd.Controllers
         {
             _repo = repo;
         }
+        [HttpGet]
+        public IActionResult GetAllFavorites()
+        {
+            var allFavorites = _repo.GetAll();
+
+            return Ok(allFavorites);
+        }
+
         [HttpPost("{productId}")]
         public IActionResult CreateFavorite(int productId)
         {
@@ -27,6 +35,7 @@ namespace ChemiCleanBackEnd.Controllers
 
             return Created($"/api/favorites/{favorite.ProductId}", favorite);
         }
+
         [HttpGet("{productId}")]
         public IActionResult GetByFavoriteById(int productId)
         {
@@ -35,15 +44,19 @@ namespace ChemiCleanBackEnd.Controllers
             return Ok(singleFavoriteProduct);
         }
 
-        [HttpGet]
-        public IActionResult GetFavoritesByUid()
+        [HttpDelete("{favoriteId}")]
+        public IActionResult DeleteProduct(int favoriteId)
         {
-            var favorite = _repo.GetAllFavoritesByUid(UserId);
+            if (_repo.GetById(favoriteId) == null)
+            {
+                return NotFound();
+            }
+            _repo.Remove(favoriteId);
 
-            if (favorite == null) return NotFound("No favorites for this UserId");
-
-            return Ok(favorite);
+            return Ok();
         }
-
     }
+
+
 }
+

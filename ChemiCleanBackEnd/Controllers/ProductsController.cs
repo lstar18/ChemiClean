@@ -13,7 +13,7 @@ namespace ChemiCleanBackEnd.Controllers
 {
     [Route("api/products")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductsController : FirebaseEnabledController
     {
         ProductsRepo _repo;
        public ProductsController(ProductsRepo repo)
@@ -47,6 +47,18 @@ namespace ChemiCleanBackEnd.Controllers
 
             return Created($"/api/products/{product.ProductId}", product);
         }
+        [HttpGet("favorites")]
+        public IActionResult GetFavoritesByUid()
+        {
+            var favorite = _repo.GetAllFavoritesByUid(UserId);
+
+            if (favorite == null) return NotFound("No favorites for this UserId");
+
+            var x = favorite.First().FavoriteId;
+
+            return Ok(favorite);
+        }
+
 
         [HttpPut("{id}")]
         public IActionResult UpdatedProduct(int id, Product products)

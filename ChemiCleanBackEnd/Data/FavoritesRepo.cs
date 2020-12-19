@@ -27,19 +27,17 @@ namespace ChemiCleanBackEnd.Data
 
             return favorites;
         }
-
-        public IEnumerable<Product> GetAllFavoritesByUid(string UserId)
+        public Favorites GetById(int favoriteId)
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"select p.* 
-                                from Favorites f
-                                 join products p on p.productid = f.productid
-                                where Favorites.Uid = @fuid";
+            var query = @"select *
+                          from Favorites
+                          where favoriteId = @fid";
 
-            var parameters = new { fuid = UserId };
+            var parameters = new { fid = favoriteId };
 
-            var favorites = db.Query<Product>(sql, parameters);
+            var favorites = db.QueryFirstOrDefault<Favorites>(query, parameters);
 
             return favorites;
         }
@@ -75,6 +73,16 @@ namespace ChemiCleanBackEnd.Data
             var newId = db.ExecuteScalar<int>(sql, favoriteToAdd);
 
             favoriteToAdd.Id = newId;
+        }
+        public void Remove(int favoriteId)
+        {
+            var sql = @"DELETE
+                        FROM [dbo].[Favorites]
+                        WHERE FavoriteId = @fid";
+
+            using var db = new SqlConnection(_connectionString);
+
+            db.Execute(sql, new { fid = favoriteId });
         }
     }
 }

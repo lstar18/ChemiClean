@@ -61,7 +61,7 @@ class AddReview extends React.Component {
       <Link className="arrow btn btn-dark mb-2" to={homeLink}> <i class="fas fa-arrow-circle-left"></i> </Link>
      <form>
        <div class="form-group">
-         <label forHtml="review-title"> Title: </label>
+         <label forhtml="review-title"> Title: </label>
          <input
          type="text"
          class="form-control"
@@ -70,7 +70,7 @@ class AddReview extends React.Component {
          onChange={this.reviewTitleChange}/>
        </div>
        <div class="form-group">
-         <label forHtml="product-description">Review: </label>
+         <label forhtml="product-description">Review: </label>
          <input
          type="text"
          class="form-control"
