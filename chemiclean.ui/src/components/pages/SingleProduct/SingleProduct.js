@@ -42,7 +42,7 @@ class SingleProduct extends React.Component {
 
    removeReview = (reviewId) => {
      ReviewData.removeReview(reviewId)
-       .then(() => this.getSingleProductsWithReviews())
+       .then(() => this.getSingleProductWithReviews())
        .catch((err) => console.error('cannot remove product', err));
    }
 
