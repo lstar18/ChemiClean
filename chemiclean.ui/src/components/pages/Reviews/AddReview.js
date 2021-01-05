@@ -54,11 +54,10 @@ class AddReview extends React.Component {
       reviewTitle,
       review,
     } = this.state;
-    const homeLink = '/home';
     return (
       <div className="NewReview col-12 mt-4">
       <h3> <span> Add a New Review: </span> </h3>
-      <Link className="arrow btn btn-dark mb-2" to={homeLink}> <i class="fas fa-arrow-circle-left"></i> </Link>
+      <button className="arrow btn btn-dark mb-2" onClick={this.props.onSave}> <i class="fas fa-times-circle"></i> </button>
      <form>
        <div class="form-group">
          <label forhtml="review-title"> Title: </label>
