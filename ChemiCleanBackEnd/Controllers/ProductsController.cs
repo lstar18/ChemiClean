@@ -54,8 +54,6 @@ namespace ChemiCleanBackEnd.Controllers
 
             if (favorite == null) return NotFound("No favorites for this UserId");
 
-            var x = favorite.First().FavoriteId;
-
             return Ok(favorite);
         }
 

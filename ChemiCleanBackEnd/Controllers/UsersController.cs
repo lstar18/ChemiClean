@@ -47,6 +47,7 @@ namespace ChemiCleanBackEnd.Controllers
        [HttpPost]
         public IActionResult AddNewUser(User user)
         {
+            if (user == null) 
             _repo.AddUser(user);
             return Created($"/api/users/{user.Id}", user);
         }

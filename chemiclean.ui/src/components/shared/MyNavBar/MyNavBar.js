@@ -35,7 +35,7 @@ render() {
             <Collapse isOpen={isOpen} navbar>
               <Nav className="mr-auto" navbar>
                 <NavItem>
-                  <NavLink tag={RRNavLink} to='/home'>Home</NavLink>
+                  <NavLink tag={RRNavLink} to='/favorites'>Favorites</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={RRNavLink} to='/AllProducts'>Products</NavLink>
@@ -56,7 +56,7 @@ render() {
   return (
     <div>
       <Navbar color="light" light expand="md">
-      <NavLink className="navbar-brand" tag={RRNavLink} to="/">ChemiClean</NavLink>
+      <NavLink className="navbar-brand" tag={RRNavLink} to="/home">ChemiClean</NavLink>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={isOpen} navbar>
         {buildNavBar()}
