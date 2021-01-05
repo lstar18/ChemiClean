@@ -76,13 +76,12 @@ class SingleProduct extends React.Component {
             <Link className="back-to-product-button btn btn-outline-dark text center col-12" to={AllProductLink}> Back to All Products:  <i class="fas fa-arrow-circle-left"></i> </Link>
             <button className="add-to-favorites-button btn btn-outline-danger col-5 mt-4 mr-1 " onClick={this.addToFavorites}>  Favorite <i className="fas fa-heart"></i></button>
             <button type="submit" class="add-review-button btn btn-outline-dark col-5 mt-4 ml-1" onClick={() => this.setState({ addingReview: true })}> Add Review <i className="fas fa-plus"></i></button>
-          </div>
-          <div className="ReviewProduct-details col-8 offset-3 mr-3">
             {reviewForm()}
+            <div className="ReviewProduct-details col-10 mt-3 mr-3">
             <h2 className="reivew-header mb-3 col-11 offset-2">  Reviews: </h2>
               {buildreviews}
-         </div>
-
+            </div>
+          </div>
         </div>
         </div>
       </div>
