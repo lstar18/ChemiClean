@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './AddReview.scss';
 import ProductShape from '../../../helpers/propz/ProductShape';
 import ReviewData from '../../../helpers/data/ReviewData';
