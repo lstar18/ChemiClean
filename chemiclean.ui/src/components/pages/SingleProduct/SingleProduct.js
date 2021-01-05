@@ -73,7 +73,7 @@ class SingleProduct extends React.Component {
             <h2> {product.title} </h2>
             <h3>EWG Rating: {product.rating}</h3>
             <p>Product Description: {product.description}</p>
-            <Link className="back-to-product-button btn btn-outline-dark text center col-12" to={AllProductLink}> Back to All Products:  <i class="fas fa-arrow-circle-left"></i> </Link>
+            <Link className="back-to-product-button btn btn-outline-dark text center col-12" to={AllProductLink}> Back to All Products </Link>
             <button className="add-to-favorites-button btn btn-outline-danger col-5 mt-4 mr-1 " onClick={this.addToFavorites}>  Favorite <i className="fas fa-heart"></i></button>
             <button type="submit" class="add-review-button btn btn-outline-dark col-5 mt-4 ml-1" onClick={() => this.setState({ addingReview: true })}> Add Review <i className="fas fa-plus"></i></button>
             {reviewForm()}
