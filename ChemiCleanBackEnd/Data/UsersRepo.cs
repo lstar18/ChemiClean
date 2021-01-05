@@ -49,12 +49,11 @@ namespace ChemiCleanBackEnd.Data
         public void AddUser(User userToAdd)
         {
             var sql = @"INSERT INTO [dbo].[Users]
-                                ([Uid]
-                                    )
+                                ([Uid])
                         Output inserted.id
 
-                     VALUES
-                            (@uid)";
+                     SELECT (@uid) 
+                     WHERE NOT EXISTS ( SELECT * FROM USERS WHERE Uid = @uid)";
 
             using var db = new SqlConnection(_connectionString);
 
