@@ -20,7 +20,7 @@ class ReviewCard extends React.Component {
     return (
       < div className="reviewCard col-9 offset-3 mb-5">
         <h5 className="text-center" >{review.reviewTitle} </h5>
-        <p className="card-title text-center"> "{review.review}"" </p>
+        <p className="card-title text-center"> "{review.review}" </p>
         <p className="card-text text-center"> {moment(review.datePosted).format('LL')} </p>
       {UserDeleteReview()}
       </div>

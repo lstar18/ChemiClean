@@ -56,8 +56,8 @@ class AddReview extends React.Component {
     } = this.state;
     const homeLink = '/home';
     return (
-      <div className="NewProduct col-6 offset-3">
-      <h2> Add a New Review: </h2>
+      <div className="NewReview col-12 mt-4">
+      <h3> <span> Add a New Review: </span> </h3>
       <Link className="arrow btn btn-dark mb-2" to={homeLink}> <i class="fas fa-arrow-circle-left"></i> </Link>
      <form>
        <div class="form-group">
@@ -78,7 +78,7 @@ class AddReview extends React.Component {
          value={review}
          onChange={this.reviewChange}/>
        </div>
-       <button type="submit" class="add-child-button btn btn-dark btn-lg" onClick={this.saveNewReview}> Save Review <i className="fas fa-plus"></i></button>
+       <button type="submit" class="add-review-button btn btn-dark btn-sm" onClick={this.saveNewReview}> Save Review </button>
      </form>
    </div>
     );
