@@ -29,6 +29,7 @@ class ProductCard extends React.Component {
           <p class="card-text">EWG Rating: {product.rating} </p>
           <Link className="view-single-product-button btn btn-outline-dark" to={productLink}> Product Details  <i className="fas fa-eye"></i> </Link>
           {UserDelete()}
+          <button className="add-to-favorites-button btn btn-outline-danger col-5 mt-4 mr-1 " onClick={this.addToFavorites}>  Favorite <i className="fas fa-heart"></i></button>
         </div>
      </div>
     );

@@ -3,6 +3,7 @@ import './AllProducts.scss';
 import ProductData from '../../../helpers/data/ProductData';
 import ProductCard from '../../shared/ProductCard/ProductCard';
 import authData from '../../../helpers/data/AuthData';
+import FavoritesData from '../../../helpers/data/FavoritesData';
 
 class AllProducts extends React.Component {
   state = {
@@ -19,6 +20,17 @@ class AllProducts extends React.Component {
     this.getProducts();
   }
 
+  addToFavorites = (e) => {
+    e.preventDefault();
+    const { productId } = this.props.match.params;
+    console.error(productId);
+    FavoritesData.addSingleFavoriteProduct(productId)
+      .then(() => this.props.history.push(`/Products/${productId}`))
+      .catch((err) => console.error('cannot add favorites to favorites table', err));
+    // eslint-disable-next-line no-alert
+    alert('Your favorite has been added!');
+  }
+
   removeProduct = (productId) => {
     ProductData.removeProduct(productId)
       .then(() => this.getProducts())
@@ -28,7 +40,7 @@ class AllProducts extends React.Component {
   render() {
     const { products } = this.state;
     const buildProductPage = products.map((product, index) => (
-      <ProductCard key={index} product={product} removeProduct={this.removeProduct} Uid={authData.getUid()}/>
+      <ProductCard key={index} product={product} removeProduct={this.removeProduct} Uid={authData.getUid()} addToFavorites={this.addToFavorites}/>
     ));
     return (
       <div className="AllProducts">
