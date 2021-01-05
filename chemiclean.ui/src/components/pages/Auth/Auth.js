@@ -26,9 +26,15 @@ class Auth extends React.Component {
 
       render() {
         return (
-            <div>
-                <button onClick={this.loginClickEvent} type="button" className="btn btn-primary">Google Login</button>
+        <div>
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+            <h1 class="display-4">Welcome To ChemiClean!</h1>
+            <p class="lead">A Community of People Who Utilize Clean Products in Their Homes</p>
             </div>
+          </div>
+            <button onClick={this.loginClickEvent} type="button" className="btn btn-outline-dark">Google Login</button>
+        </div>
         );
       }
 }

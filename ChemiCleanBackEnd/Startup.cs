@@ -37,7 +37,6 @@ namespace ChemiCleanBackEnd
             services.AddTransient<ReviewsRepo>();
             services.AddTransient<UsersRepo>();
             services.AddTransient<FavoritesRepo>();
-            services.AddTransient<FavoriteProductsRepo>();
 
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

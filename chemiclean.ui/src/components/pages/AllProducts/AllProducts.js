@@ -32,10 +32,14 @@ class AllProducts extends React.Component {
     ));
     return (
       <div className="AllProducts">
-        <h1 className="page-title text-center mb-4"> Products </h1>
-        <div className="ProductContainer d-flex flex-wrap row-3 justify-content-around">
-          {buildProductPage}
-        </div>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+            <h1 class="display-4">Products</h1>
+            <div className="ProductContainer d-flex flex-wrap row-3 justify-content-around">
+            {buildProductPage}
+            </div>
+            </div>
+          </div>
       </div>
     );
   }
